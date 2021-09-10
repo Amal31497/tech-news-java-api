@@ -11,26 +11,34 @@ import java.util.Objects;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-@Table(name = "post")
+@Table(name = "post", schema = "just_tech_news_java_db")
 public class Post implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
     private String title;
     private String postUrl;
+
     @Transient
     private String userName;
+
     @Transient
     private int voteCount;
+
     private Integer userId;
+
     @NotNull
     @Temporal(TemporalType.DATE)
     @Column(name = "posted_at")
     private Date postedAt = new Date();
+
     @NotNull
     @Temporal(TemporalType.DATE)
-    @Column(name ="updated_at")
+    @Column(name = "updated_at")
     private Date updatedAt = new Date();
+
+    @OneToMany(mappedBy = "postId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Comment> comments;
 
     public Post(){

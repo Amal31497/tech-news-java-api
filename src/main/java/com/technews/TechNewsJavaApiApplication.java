@@ -7,7 +7,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TechNewsJavaApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TechNewsJavaApiApplication.class, args);
+		try
+		{
+			SpringApplication.run(TechNewsJavaApiApplication.class, args);
+		}
+		catch (Throwable throwable)
+		{
+			System.out.println(throwable.toString());
+			throwable.printStackTrace();
+		}
 	}
 
 }
